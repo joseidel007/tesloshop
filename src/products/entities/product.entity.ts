@@ -115,7 +115,7 @@ export class Product {
     @ManyToOne(
         () => User,
         (user) => user.product,
-        { eager: true }
+        { eager: false }
     )
     user: User
     @BeforeInsert()

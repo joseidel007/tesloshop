@@ -14,6 +14,7 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
   imports: [
     ConfigModule.forRoot(),//Para que las variables de enterno sevean en nestjs npm install @nestjs/config
     TypeOrmModule.forRoot({
+      ssl: process.env.STAGE === 'prod',
       type: "postgres",
       host: process.env.DB_HOST,
       port: 5432,

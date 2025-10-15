@@ -1,4 +1,10 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { ApiProperty } from "@nestjs/swagger";
+import { Product } from "src/products/entities";
+import {
+    BeforeInsert, BeforeUpdate, Column,
+    Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn
+}
+    from "typeorm";
 
 @Entity('users')
 export class User {
@@ -30,6 +36,11 @@ export class User {
     })
     roles: string[];
 
+    @OneToMany(
+        () => Product,
+        (product) => product.user
+    )
+    product: Product
     @BeforeInsert()
     checkFieldsBeforeInsert() {
         this.email = this.email.toLocaleLowerCase().trim();

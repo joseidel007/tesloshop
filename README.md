@@ -2,7 +2,6 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
 </p>
 
-
 # Teslo API
 1. Clonar proyecto
 2. npm install
@@ -12,4 +11,8 @@
 ```
 docker-compose up -d
 ```
-6. Levantar: ```npm run start:dev```
+6. Ejecutar SEED
+```
+http://localhost:3000/api/seed
+```
+7. Levantar: ```npm run start:dev```

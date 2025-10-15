@@ -8,8 +8,10 @@ import { UserRoleGuard } from './guards/user-role/user-role.guard';
 import { RoleProtected } from './decorators/role-protected.decorator';
 import { ValidRoles } from './interfaces/valid-roles';
 import { Auth } from './decorators/auth.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }
@@ -17,6 +19,14 @@ export class AuthController {
   @Post('register')
   create(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
+  }
+
+  @Get('check-status')
+  @Auth()
+  checkAuthStatus(
+    @GetUser() user: User
+  ) {
+    return this.authService.checkAuthStatus(user);
   }
 
   @Post('login')
@@ -59,7 +69,7 @@ export class AuthController {
 
 
   @Get('private3')
-  @Auth(ValidRoles.root)
+  @Auth(ValidRoles.admin)
   privateRoute3(
     @GetUser() user: User
   ) {
